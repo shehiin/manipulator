@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Robot Arm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      background-color: #0a0f0a; /* near-black with green tint */
+      color: #eee;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 16px;
+    }
+    .col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    button {
+      width: 80px;
+      height: 40px;
+      font-size: 16px;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .b { background-color: #3040b0; } /* Base */
+    .s { background-color: #cc5500; } /* Shoulder */
+    .e { background-color: #2a9933; } /* Elbow */
+    .w { background-color: #8e44ad; } /* Wrist */
+    .g { background-color: #999900; } /* Gripper */
+    button:hover {
+      filter: brightness(1.2);
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Arm Control</h1>
+  <div class="row">
+    <div class="col">
+      <button class="b" onclick="send('Q')">B+</button>
+      <button class="b" onclick="send('A')">B-</button>
+    </div>
+    <div class="col">
+      <button class="s" onclick="send('W')">S+</button>
+      <button class="s" onclick="send('S')">S-</button>
+    </div>
+    <div class="col">
+      <button class="e" onclick="send('E')">E+</button>
+      <button class="e" onclick="send('D')">E-</button>
+    </div>
+    <div class="col">
+      <button class="w" onclick="send('R')">W+</button>
+      <button class="w" onclick="send('F')">W-</button>
+    </div>
+    <div class="col">
+      <button class="g" onclick="send('T')">G+</button>
+      <button class="g" onclick="send('G')">G-</button>
+    </div>
+  </div>
+
+  <script>
+    function send(cmd) {
+      fetch('http://192.168.107.147/cmd?key=' + cmd);
+    }
+  </script>
+</body>
+</html>
